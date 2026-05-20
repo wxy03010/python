@@ -1,0 +1,36 @@
+name: Auto_Build_Subfolder_Reports
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: pip install pyecharts pandas openpyxl  
+
+      - name: Generate All HTML Files
+        run: |
+          cd midterm_report
+          python ex01.py
+          python ex02.py
+          python ex03.py
+          python ex04.py
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./midterm_report  
+          publish_branch: gh-pages

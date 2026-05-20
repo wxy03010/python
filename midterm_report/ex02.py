@@ -8,4 +8,4 @@ c = (
      .add_yaxis("商家 B", [15, 25, 16, 55, 48, 8, 30])   
      .set_global_opts(title_opts=opts.TitleOpts(title="這是一個長條圖", subtitle="商家A與商家B的資料"))    
 )
-c.render("bar01.html")
+c.render("bar02.html")
